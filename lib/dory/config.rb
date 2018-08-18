@@ -8,18 +8,21 @@ module Dory
     end
 
     def self.find_config_file(starting_dir)
-      if has_config_file?(starting_dir)
+      if self.has_config_file?(starting_dir)
         "#{starting_dir}/.dory.yml"
       elsif starting_dir == "/"
-        return nil
+        return self.default_filename
       else
-        return find_config_file(File.dirname(starting_dir)) # recurse up to /
+        return self.find_config_file(File.dirname(starting_dir)) # recurse up to /
       end
     end
 
+    def self.default_filename
+      "#{Dir.home}/.dory.yml"
+    end
+
     def self.filename
-      config_file = find_config_file(Dir.pwd)
-      config_file ? config_file : "#{Dir.home}/.dory.yml"
+      self.find_config_file(Dir.pwd)
     end
 
     def self.default_yaml

@@ -77,7 +77,7 @@ DEPENDENCIES
   dory!
   rake (~> 12.3)
   rspec (~> 3.8)
-  rubocop (~> 0.47)
+  rubocop (~> 0.58)
 
 BUNDLED WITH
    1.16.2

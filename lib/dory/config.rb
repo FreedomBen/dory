@@ -3,8 +3,23 @@ require 'active_support/core_ext/hash/indifferent_access'
 
 module Dory
   class Config
+    def self.has_config_file?(dir)
+      File.exist?("#{dir}/.dory.yml")
+    end
+
+    def self.find_config_file(starting_dir)
+      if has_config_file?(starting_dir)
+        "#{starting_dir}/.dory.yml"
+      elsif starting_dir == "/"
+        return nil
+      else
+        return find_config_file(File.dirname(starting_dir)) # recurse up to /
+      end
+    end
+
     def self.filename
-      "#{Dir.home}/.dory.yml"
+      config_file = find_config_file(Dir.pwd)
+      config_file ? config_file : "#{Dir.home}/.dory.yml"
     end
 
     def self.default_yaml

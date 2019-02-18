@@ -8,7 +8,7 @@ module Dory
       setting = Dory::Config.settings[:dory][:nginx_proxy][:image]
       return setting if setting
       certs_dir && !certs_dir.empty? \
-        ? 'codekitchen/dinghy-http-proxy:2.5.9' \
+        ? 'codekitchen/dinghy-http-proxy:2.5.10' \
         : 'freedomben/dory-http-proxy:2.5.9.1'
     end
 

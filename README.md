@@ -156,11 +156,12 @@ To make your container(s) accessible through a domain, all you have to do is set
 a `VIRTUAL_HOST` environment variable in your container.  That's it!  (Well, and you have
 to start dory with `dory up`)
 
+The proxy will by default use the first port exposed by your container as the HTTP port to proxy to. This can be overridden by setting the VIRTUAL_PORT environment variable on the container to the desired HTTP port.
+
 You will also need to set `VIRTUAL_PORT` if your server binds to something other than 80
 inside its container (e.g. `VIRTUAL_PORT: 3000`).  This will tell the nginx proxy which
 port to forward traffic to in your container.  When accessing the server from outside
-of docker, you will still hit port 80 (such as with your web browser).
-
+of docker, you will still hit port 80 (such as with your web browser). 
 If your back-end container uses HTTPS, then set `VIRTUAL_PROTO: https` to tell the nginx
 proxy to use https instead of the default http.
 

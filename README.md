@@ -101,8 +101,6 @@ dory:
     domains:               # array of domains that will be resolved to the specified address
       - domain: docker     # you can set '#' for a wilcard
         address: 127.0.0.1 # return for queries against the domain
-      - domain: dev
-        address: 127.0.0.1
     container_name: dory_dnsmasq
     port: 53  # port to listen for dns requests on.  must be 53 on linux. can be anything that's open on macos
     # kill_others: kill processes bound to the port we need (see previous setting 'port')
@@ -203,7 +201,7 @@ docker run -e VIRTUAL_HOST=myapp.docker  ...
 
 If you are using dinghy, but want to use dory to manage the proxy instead of dinghy's built-in stuff,
 this is now possible! (the use case for this that we ran into was multiple domain support.  For example,
-the dev wanted to have some containers accessible at `something.docker` and `another.dev`).  To accomplish this,
+the dev wanted to have some containers accessible at `something.docker`).  To accomplish this,
 you need to disable dinghy's proxy stuff (otherwise dinghy and dory will stomp on each other's resolv files):
 
 In your [`~/.dinghy/preferences.yml`](https://github.com/codekitchen/dinghy#preferences)
@@ -226,8 +224,6 @@ dory:
   dnsmasq:
     domains:
       - domain: docker
-        address: dinghy # instead of the default 127.0.0.1
-      - domain: dev
         address: dinghy # instead of the default 127.0.0.1
     ...
   resolv:

@@ -22,7 +22,7 @@ RSpec.describe DoryBin do
   end
 
   def macos_resolv_filenames
-    %w[/tmp/resolver/docker /tmp/resolver/dev /tmp/resolver/dory]
+    %w[/tmp/resolver/docker /tmp/resolver/dory]
   end
 
   def linux_resolv_filename

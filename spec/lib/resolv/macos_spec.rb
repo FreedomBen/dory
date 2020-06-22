@@ -2,7 +2,7 @@ require 'rspec'
 
 RSpec.describe Dory::Resolv::Macos do
   let(:resolv_dir) { '/tmp/resolver' }
-  let(:resolv_files) { %w[docker dev dory] }
+  let(:resolv_files) { %w[docker dory] }
   let(:system_resolv_file) { '/tmp/resolv.conf' }
   let(:filenames) { %w[/tmp/resolver/docker /tmp/resolver/dev /tmp/resolver/dory] }
 

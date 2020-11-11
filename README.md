@@ -286,6 +286,10 @@ in `/etc/NetworkManager/NetworkManager.conf`.  Then restart
 NetworkManager:  `sudo service network-manager restart` or
 `sudo systemctl restart NetworkManager`
 
+If you're using Network Manager/DNSMasqd to do NAT and/or share internet with the computer 
+you are installing dory on, stop. You'd need to configure dory's built in DNSmasq to do 
+the same, which is not trivial, out of scope, and porbably more than you're barganing for.
+
 If you are on Mac, you can choose which port to bind the dnsmasq container to.  In your
 dory config file, adjust the setting under `dory -> dnsmasq -> port`.  You probably want
 to make `dory -> resolv -> port` match.  The default value on Mac is 19323.

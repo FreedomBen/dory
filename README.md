@@ -22,22 +22,30 @@ your local domain to the nginx proxy
 
 ## Installation
 
-_NOTE: Dory requires ruby version 2.2 or greater to be installed on your system already.  If you use
-multiple versions, or if your system ruby is too old, or if you just prefer not to install gems
-into your system ruby, I recommend installing the ruby version with
-[ruby-install](https://github.com/postmodern/ruby-install) and then managing it with
-[chruby](https://github.com/postmodern/chruby)._
+A package for .deb and .rpm is planned as well as a systemd service.
+If you'd like to help out with any of that, let me know!
 
-Dory currently ships as a gem.  You can install with:
+### [Homebrew](https://brew.sh) (recommended on macOS)
+
+```bash
+brew install dory
+```
+
+### Ruby gem (recommended on Linux)
+
+**NOTE:** Dory requires ruby version 2.2 or greater to be installed on your system already.
+
+If you use multiple versions, your system ruby is too old or you just prefer not to install gems into your system ruby, I recommend installing the ruby version with [ruby-install](https://github.com/postmodern/ruby-install) and then managing it with [chruby](https://github.com/postmodern/chruby).
 
 ```bash
 gem install dory
 ```
 
-A brew package is planned, and well as .deb and .rpm.  Also (eventually) a systemd service.
-If you'd like to help out with any of that, let me know!
+### Arch Linux (hosted on the [quarry repository](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#quarry))
 
-archlinux: `pacman -S ruby-dory` hosted on the [quarry repository](https://wiki.archlinux.org/index.php/Unofficial_user_repositories#quarry)
+```bash
+pacman -S ruby-dory
+```
 
 ## Quick Start
 

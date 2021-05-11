@@ -1,0 +1,32 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master, add-github-workflow ]
+  pull_request:
+    branches: [ master, add-github-workflow ]
+
+jobs:
+  test:
+    runs-on: [ubuntu-20.04]
+    steps:
+    - name: Install dependencies
+      run: |
+        . /etc/os-release
+        #echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+        #curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
+        sudo apt-get update
+        sudo apt-get -y install docker.io openssl libssl-dev nmap
+        gem install bundler
+        bundle install
+
+    - uses: actions/checkout@v2
+
+    - name: Test rspec
+      run: bundle exec rspec spec
+
+    - name: Upload test log
+      uses: actions/upload-artifact@v1
+      with:
+        name: test-results.log
+        path: test-results.log

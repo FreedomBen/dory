@@ -13,10 +13,14 @@ jobs:
     - name: Install dependencies
       run: |
         . /etc/os-release
-        #echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-        #curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
         sudo apt-get update
-        sudo apt-get -y install docker.io openssl libssl-dev nmap
+        sudo apt-get -y remove docker docker-engine docker.io containerd runc
+        sudo apt-get -y install openssl libssl-dev nmap
+        sudo apt-get -y install apt-transport-https ca-certificates curl gnupg lsb-release
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update
+        sudo apt-get -y install docker-ce docker-ce-cli containerd.io
         gem install bundler
         bundle install
 

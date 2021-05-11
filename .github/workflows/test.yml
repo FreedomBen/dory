@@ -25,8 +25,11 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: Install gem depencencies
+    - name: Install gem dependencies
       run: sudo bundle install
+
+    - name: Clear Port 53
+      run: ./travis/clear-port-53.sh
 
     - name: Test rspec
       run: bundle exec rspec spec

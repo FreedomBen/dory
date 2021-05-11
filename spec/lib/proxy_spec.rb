@@ -131,7 +131,7 @@ RSpec.describe Dory::Proxy do
         dy = YAML.load(Dory::Config.default_yaml)
         expect(dy['dory']['nginx_proxy']['port']).to eq(new_port)
         expect(dy['dory']['nginx_proxy']['tls_port']).to eq(new_tls_port)
-        require 'byebug'; debugger
+        #require 'byebug'; debugger
         patch_ssl_enabled.call(true)
         expect(Dory::Proxy.run_command).to match(/-p\s+#{new_port}:80/)
         expect(Dory::Proxy.run_command).to match(/-p\s+#{new_tls_port}:443/)

@@ -10,7 +10,7 @@ jobs:
   test:
     runs-on: [ubuntu-20.04]
     steps:
-    - name: Install dependencies
+    - name: Install OS dependencies
       run: |
         . /etc/os-release
         sudo apt-get update
@@ -22,9 +22,11 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install docker-ce docker-ce-cli containerd.io
         sudo gem install bundler
-        sudo bundle install
 
     - uses: actions/checkout@v2
+
+    - name: Install gem depencencies
+      run: sudo bundle install
 
     - name: Test rspec
       run: bundle exec rspec spec

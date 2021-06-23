@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.executables << 'dory'
 
   s.add_runtime_dependency 'colorize', '~> 0.8'
-  s.add_runtime_dependency 'thor', '~> 0.20'
+  s.add_runtime_dependency 'thor', '~> 1.0'
   s.add_runtime_dependency 'ptools', '~> 1.3'
   s.add_runtime_dependency 'activesupport', '>= 5.2', '< 7.0'
 

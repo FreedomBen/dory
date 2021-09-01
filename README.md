@@ -114,7 +114,7 @@ dory:
     # kill_others: kill processes bound to the port we need (see previous setting 'port')
     #   Possible values:
     #     ask (prompt about killing each time. User can accept/reject)
-    #     yes|true (go aheand and kill without asking)
+    #     yes|true (go ahead and kill without asking)
     #     no|false (don't kill, and don't even ask)
     kill_others: ask
     service_start_delay: 5  # seconds to wait after restarting systemd services
@@ -162,7 +162,8 @@ To make your container(s) accessible through a domain, all you have to do is set
 a `VIRTUAL_HOST` environment variable in your container.  That's it!  (Well, and you have
 to start dory with `dory up`)
 
-The proxy will by default use the first port exposed by your container as the HTTP port to proxy to. This can be overridden by setting the VIRTUAL_PORT environment variable on the container to the desired HTTP port.
+The proxy will by default use the first port exposed by your container as the HTTP port to proxy to.
+This can be overridden by setting the `VIRTUAL_PORT` environment variable on the container to the desired HTTP port.
 
 You will also need to set `VIRTUAL_PORT` if your server binds to something other than 80
 inside its container (e.g. `VIRTUAL_PORT: 3000`).  This will tell the nginx proxy which
@@ -296,7 +297,7 @@ NetworkManager:  `sudo service network-manager restart` or
 
 If you're using Network Manager/DNSMasqd to do NAT and/or share internet with the computer 
 you are installing dory on, stop. You'd need to configure dory's built in DNSmasq to do 
-the same, which is not trivial, out of scope, and porbably more than you're barganing for.
+the same, which is not trivial, out of scope, and probably more than you're bargaining for.
 
 If you are on Mac, you can choose which port to bind the dnsmasq container to.  In your
 dory config file, adjust the setting under `dory -> dnsmasq -> port`.  You probably want

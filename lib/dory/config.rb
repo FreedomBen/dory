@@ -39,7 +39,7 @@ module Dory
           dnsmasq:
             enabled: true
             domains:               # array of domains that will be resolved to the specified address
-              - domain: docker     # you can set '#' for a wilcard
+              - domain: docker     # you can set '#' for a wildcard
                 address: 127.0.0.1 # return for queries against the domain
             container_name: dory_dnsmasq
             port: 53  # port to listen for dns requests on.  must be 53 on linux. can be anything that's open on macos

@@ -107,7 +107,7 @@ dory:
   dnsmasq:
     enabled: true
     domains:               # array of domains that will be resolved to the specified address
-      - domain: docker     # you can set '#' for a wilcard
+      - domain: docker     # you can set '#' for a wildcard
         address: 127.0.0.1 # return for queries against the domain
     container_name: dory_dnsmasq
     port: 53  # port to listen for dns requests on.  must be 53 on linux. can be anything that's open on macos
@@ -281,7 +281,7 @@ Cmnd_Alias DORY_EDIT_RESOLVCONF = /usr/bin/tee /etc/resolv.conf
 
 ## Troubleshooting
 
-*Halp the dnsmasq container is having issues starting!*
+*Help the dnsmasq container is having issues starting!*
 
 Make sure you aren't already running a dnsmasq service (or some other service) on port 53.
 Because the Linux resolv file doesn't have support for port numbers, we have to run

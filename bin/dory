@@ -367,12 +367,14 @@ class DoryBin < Thor
   def exec_status(_options)
     puts "Reading settings file at '#{Dory::Config.filename}'".green if options[:verbose]
     settings = Dory::Config.settings
+    exit_code = 0
 
     if Dory::Proxy.running?
       puts "[*] Nginx proxy:  Running as docker container #{Dory::Proxy.container_name}".green
     elsif !nginx_proxy_enabled?(settings)
       puts "[*] Nginx proxy is disabled in config file".yellow
     else
+      exit_code = 3
       puts "[*] Nginx proxy is not running".red
     end
 
@@ -381,6 +383,7 @@ class DoryBin < Thor
     elsif !dnsmasq_enabled?(settings)
       puts "[*] Dnsmasq is disabled in config file".yellow
     else
+      exit_code = 3
       puts "[*] Dnsmasq is not running".red
     end
 
@@ -389,8 +392,11 @@ class DoryBin < Thor
     elsif !resolv_enabled?(settings)
       puts "[*] Resolv is disabled in config file".yellow
     else
+      exit_code = 3
       puts "[*] Resolv is not configured".red
     end
+
+    exit exit_code
   end
 
   def exec_down(options, services)
@@ -522,6 +528,7 @@ end
 
 aliases = {
   'start'  => 'up',
+  'ps'     => 'status',
   'stop'   => 'down',
   'update' => 'upgrade'
 }

@@ -110,9 +110,13 @@ module Dory
     def self.old_address
       Dory::Config.settings[:dory][:dnsmasq][:address]
     end
-
+    
     def self.address(addr)
       Dory::Dinghy.match?(addr) ? Dory::Dinghy.ip : addr
+    end
+
+    def self.autostart
+      Dory::Config.settings[:dory][:dnsmasq][:autostart]
     end
 
     def self.domain_addr_arg_string
@@ -127,6 +131,7 @@ module Dory
 
     def self.run_command
       "docker run -d -p #{self.port}:#{self.port}/tcp -p #{self.port}:#{self.port}/udp " \
+      "--restart=#{self.autostart ? 'unless-stopped' : 'no'} " \
       "--name=#{Shellwords.escape(self.container_name)} " \
       "--cap-add=NET_ADMIN #{Shellwords.escape(self.dnsmasq_image_name)} " \
       "#{self.domain_addr_arg_string}"

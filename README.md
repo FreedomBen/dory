@@ -1,6 +1,6 @@
 # dory
 
-[![Gem Version](https://badge.fury.io/rb/dory.svg)](https://badge.fury.io/rb/dory) [![Build Status](https://travis-ci.org/FreedomBen/dory.svg?branch=master)](https://travis-ci.org/FreedomBen/dory) [![Code Climate](https://codeclimate.com/github/FreedomBen/dory/badges/gpa.svg)](https://codeclimate.com/github/FreedomBen/dory) [![Test Coverage](https://codeclimate.com/github/FreedomBen/dory/badges/coverage.svg)](https://codeclimate.com/github/FreedomBen/dory/coverage) [![Dependency Status](https://dependencyci.com/github/FreedomBen/dory/badge)](https://dependencyci.com/github/FreedomBen/dory)
+[![Gem Version](https://badge.fury.io/rb/dory.svg)](https://badge.fury.io/rb/dory) [![Code Climate](https://codeclimate.com/github/FreedomBen/dory/badges/gpa.svg)](https://codeclimate.com/github/FreedomBen/dory) [![Test Coverage](https://codeclimate.com/github/FreedomBen/dory/badges/coverage.svg)](https://codeclimate.com/github/FreedomBen/dory/coverage)
 
 [Dory](https://github.com/FreedomBen/dory) lets you forget about IP addresses and port numbers
 while you are developing your application.  Through the magic of local DNS and

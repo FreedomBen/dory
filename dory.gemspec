@@ -24,14 +24,15 @@ Gem::Specification.new do |s|
 
   s.executables << 'dory'
 
-  s.add_runtime_dependency 'colorize', '~> 0.8'
-  s.add_runtime_dependency 'thor', '~> 1.2'
-  s.add_runtime_dependency 'ptools', '~> 1.4'
-  s.add_runtime_dependency 'activesupport', '>= 5.2', '< 8.0'
+  s.add_runtime_dependency 'ostruct', '>= 0.1'
+  s.add_runtime_dependency 'colorize', '~> 1.1'
+  s.add_runtime_dependency 'thor', '~> 1.5'
+  s.add_runtime_dependency 'ptools', '~> 1.5'
+  s.add_runtime_dependency 'activesupport', '>= 5.2', '< 9.0'
 
-  s.add_development_dependency 'rspec', '~> 3.11'
-  s.add_development_dependency 'rake', '~> 13.0'
-  s.add_development_dependency 'byebug', '~> 11.1'
+  s.add_development_dependency 'rspec', '~> 3.13'
+  s.add_development_dependency 'rake', '~> 13.3'
+  s.add_development_dependency 'byebug', '~> 13.0'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 1.0'
-  s.add_development_dependency 'rubocop', '~> 1.36'
+  s.add_development_dependency 'rubocop', '~> 1.86'
 end

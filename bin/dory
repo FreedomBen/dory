@@ -362,7 +362,21 @@ class DoryBin < Thor
         puts "resolv disabled in config file".yellow
       end
     end
+
+    if services.include?('aliases')
+      if aliases_enabled?(settings)
+        puts "Aliases enabled in config file".green if options[:verbose]
+        if Dory::Alias.configure
+          puts "Successfully created loopback aliases".green
+        else
+          puts "Error configuring aliases".red
+        end
+      else
+        puts "Aliases disabled in config file".yellow
+      end
+    end
   end
+
 
   def exec_status(_options)
     puts "Reading settings file at '#{Dory::Config.filename}'".green if options[:verbose]
@@ -391,6 +405,17 @@ class DoryBin < Thor
     else
       puts "[*] Resolv is not configured".red
     end
+
+    if !aliases_enabled?(settings)
+      puts "[*] Aliases are disabled in config file".yellow
+    else
+      addresses = Dory::Alias::check
+      if addresses.any?
+        puts "[*] Aliases:  configured for address(es) #{addresses.join(", ")}".green
+      else
+        puts "[*] No aliases are configured".red
+      end
+    end
   end
 
   def exec_down(options, services)
@@ -399,6 +424,18 @@ class DoryBin < Thor
 
     puts "Reading settings file at '#{Dory::Config.filename}'".green if options[:verbose]
     settings = Dory::Config.settings
+
+    if services.include?('aliases')
+      if Dory::Alias.clean
+        if aliases_enabled?(settings)
+          puts "Loopback aliases removed".green
+        else
+          puts "Aliases disabled in config file".yellow
+        end
+      else
+        puts "Unable to remove loopback aliases".red
+      end
+    end
 
     if services.include?('resolv')
       if Dory::Resolv.clean
@@ -471,12 +508,16 @@ class DoryBin < Thor
     settings[:dory][:resolv][:enabled]
   end
 
+  def aliases_enabled?(settings)
+    settings[:dory][:aliases][:enabled]
+  end
+
   def resolv_disabled?(settings)
     !resolv_enabled?(settings)
   end
 
   def valid_services
-    %w[proxy dns resolv]
+    %w[proxy dns resolv aliases]
   end
 
   def canonical_service(service)
@@ -488,7 +529,8 @@ class DoryBin < Thor
       'dns' => 'dns',
       'dnsmasq' => 'dns',
       'resolv' => 'resolv',
-      'resolve' => 'resolv'
+      'resolve' => 'resolv',
+      'aliases' => 'aliases'
     }[service]
   end
 

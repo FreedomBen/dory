@@ -61,6 +61,8 @@ module Dory
             enabled: true
             nameserver: 127.0.0.1
             port: 53  # port where the nameserver listens. On linux it must be 53
+          aliases:
+            enabled: false
       ).split("\n").map{|s| s.sub(' ' * 8, '')}.join("\n")
     end
 
@@ -72,7 +74,7 @@ module Dory
       if File.exist?(filename)
         defaults = self.default_settings.dup
         config_file_settings = YAML.load_file(filename).with_indifferent_access
-        [:dnsmasq, :nginx_proxy, :resolv].each do |service|
+        [:dnsmasq, :nginx_proxy, :resolv, :aliases].each do |service|
           defaults[:dory][service].merge!(config_file_settings[:dory][service] || {})
         end
         defaults[:dory][:debug] = config_file_settings[:dory][:debug]

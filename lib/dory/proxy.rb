@@ -42,8 +42,13 @@ module Dory
       Dory::Config.settings[:dory][:nginx_proxy][:port]
     end
 
+    def self.autostart
+      Dory::Config.settings[:dory][:nginx_proxy][:autostart]
+    end
+
     def self.run_command
       "docker run -d -p #{http_port}:80 #{self.tls_arg} #{self.certs_arg} "\
+        "--restart=#{self.autostart ? 'unless-stopped' : 'no'} " \
         "-v /var/run/docker.sock:/tmp/docker.sock -e " \
         "'CONTAINER_NAME=#{Shellwords.escape(self.container_name)}' --name " \
         "'#{Shellwords.escape(self.container_name)}' " \
